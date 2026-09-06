@@ -594,12 +594,20 @@ document.getElementById('sendBtn').onclick = async () => {
   statusEl.textContent = "Sending...";
   statusEl.className = 'status-msg';
   try{
-    const content = "**New portfolio contact message**\\n**From:** " + name +
-      (contact ? " (" + contact + ")" : "") + "\\n**Message:** " + message;
-    const res = await fetch(webhookUrl, {
+    const pingUserId = "961048718612774922";
+    const textContent = "<@" + pingUserId + ">\n**New portfolio contact message**\n**From:** " + name +
+      (contact ? " (" + contact + ")" : "") + "\n**Message:** " + message;
+    const payload = {
+      flags: 32768, // IS_COMPONENTS_V2
+      allowed_mentions: { users: [pingUserId] },
+      components: [
+        { type: 10, content: textContent }
+      ]
+    };
+    const res = await fetch(webhookUrl + "?with_components=true", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({content})
+      body: JSON.stringify(payload)
     });
     if(res.ok || res.status === 204){
       statusEl.textContent = "Message sent!";
