@@ -389,6 +389,10 @@ function getCategoryName(category){
   return existing ? String(existing.category).trim() : String(category || "").trim();
 }
 
+function normalizeCategory(category){
+  return String(category || "").trim().toLowerCase();
+}
+
 function renderFilters(){
   const categoryMap = new Map();
 
@@ -401,28 +405,27 @@ function renderFilters(){
   });
 
   const cats = ["All", ...categoryMap.values()];
-  // If the active category was entered with different capitalization,
-  // switch it to the first stored spelling of that category.
-  if(activeFilter !== "All" && categoryMap.has(activeKey)){
-    activeFilter = categoryMap.get(activeKey);
-  }
-
   const wrap = document.getElementById('filters');
   wrap.innerHTML = "";
 
   cats.forEach(c => {
-    const isActive = c === "All"
-      ? activeFilter === "All"
-      : normalizeCategory(c) === normalizeCategory(activeFilter);
-
     const b = document.createElement('button');
-    b.className = 'filter-pill' + (isActive ? ' active' : '');
+    b.type = 'button';
+    b.className = 'filter-pill';
+
+    if(c === "All"){
+      if(activeFilter === "All") b.classList.add('active');
+    } else if(normalizeCategory(c) === normalizeCategory(activeFilter)){
+      b.classList.add('active');
+    }
+
     b.textContent = c;
-    b.onclick = () => {
+    b.addEventListener('click', () => {
       activeFilter = c;
       renderFilters();
       renderGrid();
-    };
+    });
+
     wrap.appendChild(b);
   });
 }
@@ -430,10 +433,10 @@ function renderFilters(){
 // ---------- Render: grid ----------
 function renderGrid(){
   const wrap = document.getElementById('grid');
-  const visible = items.filter(i =>
-    activeFilter === "All" ||
-    normalizeCategory(i.category) === normalizeCategory(activeFilter)
-  );
+  const visible = items.filter(i => {
+    if(activeFilter === "All") return true;
+    return normalizeCategory(i.category) === normalizeCategory(activeFilter);
+  });
   if(visible.length === 0){
     wrap.innerHTML = '<div class="empty">Nothing added yet' + (isAdmin ? ' — add your first item below.' : ' — check back soon.') + '</div>';
     return;
