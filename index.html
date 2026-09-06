@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,151 +34,150 @@
   a{color:inherit;}
   ::selection{background:var(--green); color:#04150c;}
 
-/* ---------- NAV ---------- */
-nav{
-position; top:0; z-index:50;
-display; align-items; justify-content;
-padding:16px 32px;
-background(6,10,8,0.85);
-backdrop-filter(8px);
-border-bottom:1px solid var(--line);
-}
-.logo{
-font-weight:700; font-size:15px; letter-spacing:0.5px;
-display; align-items; gap:8px;
-}
-.logo .brk{color(--green);}
-.nav-links{display; gap:28px; font-size:13px; color(--text-dim);}
-.nav-links a{text-decoration; transition .15s;}
-.nav-links a{color(--green);}
-.nav-right{display; align-items; gap:12px;}
-.btn{
-font-family; font-size:13px; cursor;
-border-radius:3px; padding:9px 16px; border:1px solid var(--line);
-background; color(--text); transition .15s;
-}
-.btn{border-color(--green); color(--green);}
-.btn-solid{
-background(--green); color:#04150c; border:1px solid var(--green); font-weight:600;
-}
-.btn-solid
-.btn-danger{border-color(--danger); color(--danger);}
-@media (max-width: 780px){ .nav-links{display;} }
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    background:rgba(6,10,8,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-weight:700; font-size:15px; letter-spacing:0.5px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .brk{color:var(--green);}
+  .nav-links{display:flex; gap:28px; font-size:13px; color:var(--text-dim);}
+  .nav-links a{text-decoration:none; transition:color .15s;}
+  .nav-links a:hover{color:var(--green);}
+  .nav-right{display:flex; align-items:center; gap:12px;}
+  .btn{
+    font-family:inherit; font-size:13px; cursor:pointer;
+    border-radius:3px; padding:9px 16px; border:1px solid var(--line);
+    background:transparent; color:var(--text); transition:all .15s;
+  }
+  .btn:hover{border-color:var(--green); color:var(--green);}
+  .btn-solid{
+    background:var(--green); color:#04150c; border:1px solid var(--green); font-weight:600;
+  }
+  .btn-solid:hover{background:#63ffab; color:#04150c;}
+  .btn-danger:hover{border-color:var(--danger); color:var(--danger);}
+  @media (max-width: 780px){ .nav-links{display:none;} }
 
-/* ---------- LAYOUT ---------- */
-section{padding:80px 32px; max-width:1080px; margin:0 auto;}
-.eyebrow{color(--green-dim); font-size:12px; margin-bottom:10px;}
-.eyebrow::before{content:"# ";}
-h2{font-size:26px; margin:0 0 32px 0;}
+  /* ---------- LAYOUT ---------- */
+  section{padding:80px 32px; max-width:1080px; margin:0 auto;}
+  .eyebrow{color:var(--green-dim); font-size:12px; margin-bottom:10px;}
+  .eyebrow::before{content:"# ";}
+  h2{font-size:26px; margin:0 0 32px 0;}
 
-/* ---------- HERO ---------- */
-.hero{padding-top:64px; padding-bottom:64px;}
-.hero-grid{display; grid-template-columns:1fr 1fr; gap:48px; align-items;}
-@media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
-.hero h1{font-size:40px; line-height:1.2; margin:0 0 18px 0;}
-.hero h1 .green{color(--green);}
-.hero p{color(--text-dim); font-size:15px; max-width:46ch; margin-bottom:28px;}
-.hero-cta{display; gap:12px;}
+  /* ---------- HERO ---------- */
+  .hero{padding-top:64px; padding-bottom:64px;}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:40px; line-height:1.2; margin:0 0 18px 0;}
+  .hero h1 .green{color:var(--green);}
+  .hero p{color:var(--text-dim); font-size:15px; max-width:46ch; margin-bottom:28px;}
+  .hero-cta{display:flex; gap:12px;}
 
-.term{
-background(--bg-raised); border:1px solid var(--line); border-radius:8px;
-overflow; box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
-}
-.term-bar{
-display; align-items; gap:8px; padding:10px 14px;
-background:#0a120f; border-bottom:1px solid var(--line);
-}
-.dot{width:10px; height:10px; border-radius:50%;}
-.term-title{margin-left:8px; font-size:11px; color(--text-faint);}
-.term-body{padding:20px; font-size:13px; min-height:210px;}
-.term-line{color(--text-dim); margin-bottom:6px; white-space;}
-.term-line .p{color(--green);}
-.term-line .out{color(--text);}
-.cursor{display; width:7px; height:14px; background(--green); vertical-align; animation 1s step-start infinite;}
-@keyframes blink{50%{opacity:0;}}
+  .term{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:8px;
+    overflow:hidden; box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px; padding:10px 14px;
+    background:#0a120f; border-bottom:1px solid var(--line);
+  }
+  .dot{width:10px; height:10px; border-radius:50%;}
+  .term-title{margin-left:8px; font-size:11px; color:var(--text-faint);}
+  .term-body{padding:20px; font-size:13px; min-height:210px;}
+  .term-line{color:var(--text-dim); margin-bottom:6px; white-space:pre-wrap;}
+  .term-line .p{color:var(--green);}
+  .term-line .out{color:var(--text);}
+  .cursor{display:inline-block; width:7px; height:14px; background:var(--green); vertical-align:middle; animation:blink 1s step-start infinite;}
+  @keyframes blink{50%{opacity:0;}}
 
-/* ---------- PORTFOLIO ---------- */
-.filters{display; flex-wrap; gap:8px; margin-bottom:28px;}
-.filter-pill{
-font-family; font-size:12px; padding:6px 14px; border-radius:20px;
-border:1px solid var(--line); background; color(--text-dim); cursor;
-transition .15s;
-}
-.filter-pill.active, .filter-pill{border-color(--green); color(--green);}
-.grid{display; grid-template-columns(auto-fill, minmax(240px,1fr)); gap:16px;}
-.card{
-background(--bg-card); border:1px solid var(--line); border-radius:6px; padding:18px;
-transition .15s, transform .15s;
-}
-.card{border-color(--green-dim);}
-.card-img{width:100%; height:150px; object-fit; border-radius:4px; margin-bottom:12px; border:1px solid var(--line); background(--bg);}
-.card-cat{font-size:11px; color(--green-dim); margin-bottom:8px;}
-.card-cat::before{content:"["; }
-.card-cat::after{content:"]"; }
-.card-name{font-size:15px; font-weight:600; margin-bottom:6px; color(--text);}
-.card-desc{font-size:13px; color(--text-dim); margin-bottom:10px;}
-.card-link{font-size:12px; color(--green); text-decoration;}
-.card-del{
-margin-top:10px; font-size:11px; color(--text-faint); background; border;
-cursor; font-family; padding:0;
-}
-.card-del{color(--danger);}
-.empty{color(--text-faint); font-size:13px; padding:24px 0;}
+  /* ---------- PORTFOLIO ---------- */
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px;}
+  .filter-pill{
+    font-family:inherit; font-size:12px; padding:6px 14px; border-radius:20px;
+    border:1px solid var(--line); background:transparent; color:var(--text-dim); cursor:pointer;
+    transition:all .15s;
+  }
+  .filter-pill.active, .filter-pill:hover{border-color:var(--green); color:var(--green);}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:16px;}
+  .card{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:6px; padding:18px;
+    transition:border-color .15s, transform .15s;
+  }
+  .card:hover{border-color:var(--green-dim);}
+  .card-img{width:100%; height:150px; object-fit:cover; border-radius:4px; margin-bottom:12px; border:1px solid var(--line); background:var(--bg);}
+  .card-cat{font-size:11px; color:var(--green-dim); margin-bottom:8px;}
+  .card-cat::before{content:"["; }
+  .card-cat::after{content:"]"; }
+  .card-name{font-size:15px; font-weight:600; margin-bottom:6px; color:var(--text);}
+  .card-desc{font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  .card-link{font-size:12px; color:var(--green); text-decoration:none;}
+  .card-del{
+    margin-top:10px; font-size:11px; color:var(--text-faint); background:none; border:none;
+    cursor:pointer; font-family:inherit; padding:0;
+  }
+  .card-del:hover{color:var(--danger);}
+  .empty{color:var(--text-faint); font-size:13px; padding:24px 0;}
 
-.add-box{
-margin-top:20px; border:1px dashed var(--line); border-radius:6px; padding:20px;
-}
-.add-box.hidden{display;}
-.field-row{display; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;}
-@media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
-label{display; font-size:11px; color(--text-faint); margin-bottom:5px;}
-input, textarea{
-width:100%; font-family; font-size:13px; padding:10px 12px;
-background(--bg); border:1px solid var(--line); border-radius:4px; color(--text);
-}
-input, textarea{outline; border-color(--green);}
-textarea{resize; min-height:70px;}
-input[type="file"]{
-padding:8px; font-size:12px; color(--text-dim); cursor;
-}
-.img-preview{
-margin-top:10px; width:140px; height:100px; object-fit; border-radius:4px;
-border:1px solid var(--line); display;
-}
-.img-preview.show{display;}
-.upload-hint{font-size:11px; color(--text-faint); margin-top:6px;}
+  .add-box{
+    margin-top:20px; border:1px dashed var(--line); border-radius:6px; padding:20px;
+  }
+  .add-box.hidden{display:none;}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;}
+  @media (max-width:600px){ .field-row{grid-template-columns:1fr;} }
+  label{display:block; font-size:11px; color:var(--text-faint); margin-bottom:5px;}
+  input, textarea{
+    width:100%; font-family:inherit; font-size:13px; padding:10px 12px;
+    background:var(--bg); border:1px solid var(--line); border-radius:4px; color:var(--text);
+  }
+  input:focus, textarea:focus{outline:none; border-color:var(--green);}
+  textarea{resize:vertical; min-height:70px;}
+  input[type="file"]{
+    padding:8px; font-size:12px; color:var(--text-dim); cursor:pointer;
+  }
+  .img-preview{
+    margin-top:10px; width:140px; height:100px; object-fit:cover; border-radius:4px;
+    border:1px solid var(--line); display:none;
+  }
+  .img-preview.show{display:block;}
+  .upload-hint{font-size:11px; color:var(--text-faint); margin-top:6px;}
 
-/* ---------- CONTACT ---------- */
-.contact-grid{display; grid-template-columns:1fr 1fr; gap:40px;}
-@media (max-width:800px){ .contact-grid{grid-template-columns:1fr;} }
-.status-msg{font-size:13px; margin-top:12px;}
-.status-ok{color(--ok);}
-.status-err{color(--danger);}
-.webhook-box{
-margin-top:18px; padding:14px; border:1px solid var(--line); border-radius:6px; font-size:12px; color(--text-faint);
-}
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  @media (max-width:800px){ .contact-grid{grid-template-columns:1fr;} }
+  .status-msg{font-size:13px; margin-top:12px;}
+  .status-ok{color:var(--ok);}
+  .status-err{color:var(--danger);}
+  .webhook-box{
+    margin-top:18px; padding:14px; border:1px solid var(--line); border-radius:6px; font-size:12px; color:var(--text-faint);
+  }
 
-footer{
-border-top:1px solid var(--line); padding:28px 32px; text-align;
-font-size:12px; color(--text-faint);
-}
+  footer{
+    border-top:1px solid var(--line); padding:28px 32px; text-align:center;
+    font-size:12px; color:var(--text-faint);
+  }
 
-/* ---------- MODAL ---------- */
-.overlay{
-position; inset:0; background(4,8,6,0.75); backdrop-filter(3px);
-display; align-items; justify-content; z-index:100;
-}
-.overlay.hidden{display;}
-.modal{
-width:340px; background(--bg-raised); border:1px solid var(--line); border-radius:8px;
-padding:26px;
-}
-.modal h3{margin:0 0 4px 0; font-size:16px;}
-.modal p.sub{color(--text-faint); font-size:12px; margin:0 0 18px 0;}
-.modal-close{float; background; border; color(--text-faint); cursor; font-size:16px;}
-.field{margin-bottom:14px;}
+  /* ---------- MODAL ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(4,8,6,0.75); backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center; z-index:100;
+  }
+  .overlay.hidden{display:none;}
+  .modal{
+    width:340px; background:var(--bg-raised); border:1px solid var(--line); border-radius:8px;
+    padding:26px;
+  }
+  .modal h3{margin:0 0 4px 0; font-size:16px;}
+  .modal p.sub{color:var(--text-faint); font-size:12px; margin:0 0 18px 0;}
+  .modal-close{float:right; background:none; border:none; color:var(--text-faint); cursor:pointer; font-size:16px;}
+  .field{margin-bottom:14px;}
 </style>
-
 </head>
 <body>
 
@@ -252,7 +250,6 @@ padding:26px;
 <footer>© 2026 John's Portfolio — built to keep growing.</footer>
 
 <!-- Sign in modal -->
-
 <div class="overlay hidden" id="loginOverlay">
   <div class="modal">
     <button class="modal-close" id="closeLogin">✕</button>
@@ -453,198 +450,196 @@ function renderAdminAdd(){
       <div class="field" style="margin-bottom:12px;">
         <label>Description (optional)</label>
         <textarea id="newDesc" placeholder="A short description"></textarea>
+      </div>
+      <div class="field" style="margin-bottom:14px;">
+        <label>Link (optional)</label>
+        <input id="newLink" placeholder="https://...">
+      </div>
+      <div class="field" style="margin-bottom:14px;">
+        <label>Photo (optional)</label>
+        <input id="newImage" type="file" accept="image/*">
+        <img id="newImagePreview" class="img-preview">
+        <div class="upload-hint">Images are resized automatically to keep things fast.</div>
+      </div>
+      <button class="btn btn-solid" id="addItemBtn">Add Item</button>
+      <div class="status-msg" id="addStatus"></div>
+    </div>
+  `;
+  let pendingImageData = "";
+  document.getElementById('newImage').onchange = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        const maxDim = 900;
+        let w = img.width, h = img.height;
+        if(w > h && w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; }
+        else if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; }
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        pendingImageData = canvas.toDataURL('image/jpeg', 0.75);
+        const preview = document.getElementById('newImagePreview');
+        preview.src = pendingImageData;
+        preview.classList.add('show');
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
-  </div>
-  <div class="field" style="margin-bottom:14px;">
-    <label>Link (optional)</label>
-    <input id="newLink" placeholder="https://...">
-  </div>
-  <div class="field" style="margin-bottom:14px;">
-    <label>Photo (optional)</label>
-    <input id="newImage" type="file" accept="image/*">
-    <img id="newImagePreview" class="img-preview">
-    <div class="upload-hint">Images are resized automatically to keep things fast.</div>
-  </div>
-  <button class="btn btn-solid" id="addItemBtn">Add Item</button>
-  <div class="status-msg" id="addStatus"></div>
-</div>
-
-`;
-let pendingImageData = "";
-document.getElementById('newImage').onchange = (e) => {
-const file = e.target.files[0];
-if(!file) return;
-const reader = new FileReader();
-reader.onload = (ev) => {
-const img = new Image();
-img.onload = () => {
-const maxDim = 900;
-let w = img.width, h = img.height;
-if(w > h && w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; }
-else if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; }
-const canvas = document.createElement('canvas');
-canvas.width = w; canvas.height = h;
-canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-pendingImageData = canvas.toDataURL('image/jpeg', 0.75);
-const preview = document.getElementById('newImagePreview');
-preview.src = pendingImageData;
-preview.classList.add('show');
-};
-img.src = ev.target.result;
-};
-reader.readAsDataURL(file);
-};
-
-document.getElementById('addItemBtn').onclick = async () => {
-const cat = document.getElementById('newCat').value.trim();
-const name = document.getElementById('newName').value.trim();
-const desc = document.getElementById('newDesc').value.trim();
-const link = document.getElementById('newLink').value.trim();
-const statusEl = document.getElementById('addStatus');
-if(!cat || !name){
-statusEl.textContent = "Category and name are required.";
-statusEl.className = 'status-msg status-err';
-return;
-}
-try{
-const saved = await addItemToDb({category: cat, name, description: desc, link, image: pendingImageData});
-items.push({id: saved.id, category: cat, name, description: desc, link, image: pendingImageData});
-statusEl.textContent = "Added — now visible to everyone.";
-statusEl.className = 'status-msg status-ok';
-document.getElementById('newCat').value = "";
-document.getElementById('newName').value = "";
-document.getElementById('newDesc').value = "";
-document.getElementById('newLink').value = "";
-document.getElementById('newImage').value = "";
-const preview = document.getElementById('newImagePreview');
-preview.src = ""; preview.classList.remove('show');
-pendingImageData = "";
-renderFilters(); renderGrid();
-}catch(e){
-statusEl.textContent = "Couldn't save — try again. If it's a large image, try a smaller photo.";
-statusEl.className = 'status-msg status-err';
-}
-};
+  document.getElementById('addItemBtn').onclick = async () => {
+    const cat = document.getElementById('newCat').value.trim();
+    const name = document.getElementById('newName').value.trim();
+    const desc = document.getElementById('newDesc').value.trim();
+    const link = document.getElementById('newLink').value.trim();
+    const statusEl = document.getElementById('addStatus');
+    if(!cat || !name){
+      statusEl.textContent = "Category and name are required.";
+      statusEl.className = 'status-msg status-err';
+      return;
+    }
+    try{
+      const saved = await addItemToDb({category: cat, name, description: desc, link, image: pendingImageData});
+      items.push({id: saved.id, category: cat, name, description: desc, link, image: pendingImageData});
+      statusEl.textContent = "Added — now visible to everyone.";
+      statusEl.className = 'status-msg status-ok';
+      document.getElementById('newCat').value = "";
+      document.getElementById('newName').value = "";
+      document.getElementById('newDesc').value = "";
+      document.getElementById('newLink').value = "";
+      document.getElementById('newImage').value = "";
+      const preview = document.getElementById('newImagePreview');
+      preview.src = ""; preview.classList.remove('show');
+      pendingImageData = "";
+      renderFilters(); renderGrid();
+    }catch(e){
+      statusEl.textContent = "Couldn't save — try again. If it's a large image, try a smaller photo.";
+      statusEl.className = 'status-msg status-err';
+    }
+  };
 }
 
 // ---------- Admin: webhook config ----------
 function renderAdminWebhook(){
-const wrap = document.getElementById('adminWebhookWrap');
-if(!isAdmin){ wrap.innerHTML = ""; return; }
-wrap.innerHTML =     <div class="webhook-box">
+  const wrap = document.getElementById('adminWebhookWrap');
+  if(!isAdmin){ wrap.innerHTML = ""; return; }
+  wrap.innerHTML = `
+    <div class="webhook-box">
       <label style="color:var(--text); font-size:13px; display:block; margin-bottom:10px;">Discord webhook (admin only)</label>
       <input id="webhookInput" placeholder="https://discord.com/api/webhooks/..." value="${escapeAttr(webhookUrl)}">
       <button class="btn" id="saveWebhookBtn" style="margin-top:10px;">Save Webhook</button>
       <div class="status-msg" id="webhookStatus"></div>
       <p style="margin-top:10px;">Messages sent from the contact form on the left will post directly to this webhook.</p>
     </div>
- ;
-document.getElementById('saveWebhookBtn').onclick = async () => {
-const url = document.getElementById('webhookInput').value.trim();
-const statusEl = document.getElementById('webhookStatus');
-try{
-await saveWebhook(url);
-statusEl.textContent = "Webhook saved.";
-statusEl.className = 'status-msg status-ok';
-}catch(e){
-statusEl.textContent = "Couldn't save webhook.";
-statusEl.className = 'status-msg status-err';
-}
-};
+  `;
+  document.getElementById('saveWebhookBtn').onclick = async () => {
+    const url = document.getElementById('webhookInput').value.trim();
+    const statusEl = document.getElementById('webhookStatus');
+    try{
+      await saveWebhook(url);
+      statusEl.textContent = "Webhook saved.";
+      statusEl.className = 'status-msg status-ok';
+    }catch(e){
+      statusEl.textContent = "Couldn't save webhook.";
+      statusEl.className = 'status-msg status-err';
+    }
+  };
 }
 
 // ---------- Login modal ----------
 function openLogin(){
-document.getElementById('loginOverlay').classList.remove('hidden');
-document.getElementById('loginError').textContent = "";
-document.getElementById('loginUser').value = "";
-document.getElementById('loginPass').value = "";
+  document.getElementById('loginOverlay').classList.remove('hidden');
+  document.getElementById('loginError').textContent = "";
+  document.getElementById('loginUser').value = "";
+  document.getElementById('loginPass').value = "";
 }
 function closeLogin(){
-document.getElementById('loginOverlay').classList.add('hidden');
+  document.getElementById('loginOverlay').classList.add('hidden');
 }
 document.getElementById('closeLogin').onclick = closeLogin;
 document.getElementById('loginOverlay').addEventListener('click', (e) => {
-if(e.target.id === 'loginOverlay') closeLogin();
+  if(e.target.id === 'loginOverlay') closeLogin();
 });
 document.getElementById('doLogin').onclick = () => {
-const u = document.getElementById('loginUser').value.trim();
-const p = document.getElementById('loginPass').value;
-if(u === ADMIN_USER && p === ADMIN_PASS){
-isAdmin = true;
-closeLogin();
-renderNav(); renderGrid(); renderAdminAdd(); renderAdminWebhook();
-} else {
-document.getElementById('loginError').textContent = "Incorrect username or password.";
-}
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if(u === ADMIN_USER && p === ADMIN_PASS){
+    isAdmin = true;
+    closeLogin();
+    renderNav(); renderGrid(); renderAdminAdd(); renderAdminWebhook();
+  } else {
+    document.getElementById('loginError').textContent = "Incorrect username or password.";
+  }
 };
 
 // ---------- Contact form ----------
 document.getElementById('sendBtn').onclick = async () => {
-const name = document.getElementById('cName').value.trim();
-const contact = document.getElementById('cContact').value.trim();
-const message = document.getElementById('cMessage').value.trim();
-const statusEl = document.getElementById('contactStatus');
-if(!name || !message){
-statusEl.textContent = "Name and message are required.";
-statusEl.className = 'status-msg status-err';
-return;
-}
-if(!webhookUrl){
-statusEl.textContent = "This site isn't connected to a Discord channel yet.";
-statusEl.className = 'status-msg status-err';
-return;
-}
-statusEl.textContent = "Sending...";
-statusEl.className = 'status-msg';
-try{
-const pingUserId = "961048718612774922";
-const textContent = "<@" + pingUserId + ">\nNew portfolio contact message\nFrom: " + name +
-(contact ? " (" + contact + ")" : "") + "\nMessage: " + message;
-const payload = {
-flags: 32768, // IS_COMPONENTS_V2
-allowed_mentions: { users: [pingUserId] },
-components: [
-{ type: 10, content: textContent }
-]
-};
-const res = await fetch(webhookUrl + "?with_components=true", {
-method: "POST",
-headers: {"Content-Type": "application/json"},
-body: JSON.stringify(payload)
-});
-if(res.ok || res.status === 204){
-statusEl.textContent = "Message sent!";
-statusEl.className = 'status-msg status-ok';
-document.getElementById('cName').value = "";
-document.getElementById('cContact').value = "";
-document.getElementById('cMessage').value = "";
-} else {
-statusEl.textContent = "Discord rejected the message. Check the webhook URL.";
-statusEl.className = 'status-msg status-err';
-}
-}catch(e){
-statusEl.textContent = "Couldn't reach Discord — check the webhook URL.";
-statusEl.className = 'status-msg status-err';
-}
+  const name = document.getElementById('cName').value.trim();
+  const contact = document.getElementById('cContact').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  const statusEl = document.getElementById('contactStatus');
+  if(!name || !message){
+    statusEl.textContent = "Name and message are required.";
+    statusEl.className = 'status-msg status-err';
+    return;
+  }
+  if(!webhookUrl){
+    statusEl.textContent = "This site isn't connected to a Discord channel yet.";
+    statusEl.className = 'status-msg status-err';
+    return;
+  }
+  statusEl.textContent = "Sending...";
+  statusEl.className = 'status-msg';
+  try{
+    const pingUserId = "961048718612774922";
+    const textContent = "<@" + pingUserId + ">\n**New portfolio contact message**\n**From:** " + name +
+      (contact ? " (" + contact + ")" : "") + "\n**Message:** " + message;
+    const payload = {
+      flags: 32768, // IS_COMPONENTS_V2
+      allowed_mentions: { users: [pingUserId] },
+      components: [
+        { type: 10, content: textContent }
+      ]
+    };
+    const res = await fetch(webhookUrl + "?with_components=true", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload)
+    });
+    if(res.ok || res.status === 204){
+      statusEl.textContent = "Message sent!";
+      statusEl.className = 'status-msg status-ok';
+      document.getElementById('cName').value = "";
+      document.getElementById('cContact').value = "";
+      document.getElementById('cMessage').value = "";
+    } else {
+      statusEl.textContent = "Discord rejected the message. Check the webhook URL.";
+      statusEl.className = 'status-msg status-err';
+    }
+  }catch(e){
+    statusEl.textContent = "Couldn't reach Discord — check the webhook URL.";
+    statusEl.className = 'status-msg status-err';
+  }
 };
 
 // ---------- Init ----------
 (async function init(){
-typeBoot();
-renderNav();
-await loadWebhook();
-await loadItems();
-renderAdminAdd();
-renderAdminWebhook();
-// light polling so other visitors see new items without a manual refresh
-setInterval(async () => {
-if(!isAdmin){
-await loadItems();
-}
-}, 12000);
+  typeBoot();
+  renderNav();
+  await loadWebhook();
+  await loadItems();
+  renderAdminAdd();
+  renderAdminWebhook();
+  // light polling so other visitors see new items without a manual refresh
+  setInterval(async () => {
+    if(!isAdmin){
+      await loadItems();
+    }
+  }, 12000);
 })();
 </script>
-
 </body>
 </html>
