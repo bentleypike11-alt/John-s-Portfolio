@@ -6,6 +6,7 @@
 <title>John's Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <style>
   :root{
     --bg: #060a08;
@@ -271,6 +272,9 @@
 const ADMIN_USER = "pikebentley";
 const ADMIN_PASS = "nugget-2010";
 const DEFAULT_WEBHOOK = "https://discord.com/api/webhooks/1545977180876439642/63VwU0uGVkh6zQTe6ekvAzaEfKwc9hH2a1-fASMnIIjpvZsEaOIt8Vosj7HHlP6OahhL";
+const SUPABASE_URL = "https://ouoqbvjaqzkwzgrcmzte.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im91b3FidmphcXprd3pncmNtenRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2NTE5ODgsImV4cCI6MjEwNDIyNzk4OH0.CjOA737JPDzG1acotLaX6zTGXn1CivDC6oxfPjB5WwQ";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 let isAdmin = false;
 let items = [];
 let activeFilter = "All";
@@ -317,35 +321,46 @@ function typeBoot(){
   next();
 }
 
-// ---------- Storage helpers ----------
+// ---------- Storage helpers (Supabase) ----------
 async function loadItems(){
   try{
-    const res = await window.storage.get('portfolio-items', true);
-    items = res && res.value ? JSON.parse(res.value) : [];
+    const {data, error} = await db.from('portfolio_items').select('*').order('created_at', {ascending:true});
+    if(error) throw error;
+    items = (data || []).map(r => ({id:r.id, category:r.category, name:r.name, description:r.description, link:r.link, image:r.image}));
   }catch(e){
     items = [];
   }
   renderFilters();
   renderGrid();
 }
-async function saveItems(){
-  await window.storage.set('portfolio-items', JSON.stringify(items), true);
+async function addItemToDb(item){
+  const {data, error} = await db.from('portfolio_items').insert([{
+    category: item.category, name: item.name, description: item.description, link: item.link, image: item.image
+  }]).select();
+  if(error) throw error;
+  return data && data[0];
+}
+async function deleteItemFromDb(id){
+  const {error} = await db.from('portfolio_items').delete().eq('id', id);
+  if(error) throw error;
 }
 async function loadWebhook(){
   try{
-    const res = await window.storage.get('site-webhook', true);
-    webhookUrl = res && res.value ? res.value : "";
+    const {data, error} = await db.from('site_config').select('value').eq('key', 'webhook').maybeSingle();
+    if(error) throw error;
+    webhookUrl = data && data.value ? data.value : "";
   }catch(e){
     webhookUrl = "";
   }
   if(!webhookUrl && DEFAULT_WEBHOOK){
     webhookUrl = DEFAULT_WEBHOOK;
-    try{ await window.storage.set('site-webhook', webhookUrl, true); }catch(e){}
+    try{ await db.from('site_config').upsert({key:'webhook', value: webhookUrl}); }catch(e){}
   }
 }
 async function saveWebhook(url){
   webhookUrl = url;
-  await window.storage.set('site-webhook', url, true);
+  const {error} = await db.from('site_config').upsert({key:'webhook', value: url});
+  if(error) throw error;
 }
 
 // ---------- Render: nav ----------
@@ -403,9 +418,14 @@ function renderGrid(){
   if(isAdmin){
     wrap.querySelectorAll('.card-del').forEach(btn => {
       btn.onclick = async () => {
-        items = items.filter(i => String(i.id) !== btn.dataset.id);
-        await saveItems();
-        renderFilters(); renderGrid();
+        const id = btn.dataset.id;
+        try{
+          await deleteItemFromDb(id);
+          items = items.filter(i => String(i.id) !== id);
+          renderFilters(); renderGrid();
+        }catch(e){
+          alert("Couldn't remove that item — try again.");
+        }
       };
     });
   }
@@ -481,9 +501,9 @@ function renderAdminAdd(){
       statusEl.className = 'status-msg status-err';
       return;
     }
-    items.push({id: Date.now(), category: cat, name, description: desc, link, image: pendingImageData});
     try{
-      await saveItems();
+      const saved = await addItemToDb({category: cat, name, description: desc, link, image: pendingImageData});
+      items.push({id: saved.id, category: cat, name, description: desc, link, image: pendingImageData});
       statusEl.textContent = "Added — now visible to everyone.";
       statusEl.className = 'status-msg status-ok';
       document.getElementById('newCat').value = "";
